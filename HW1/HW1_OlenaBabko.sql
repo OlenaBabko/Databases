@@ -29,3 +29,23 @@ ORDER BY district ASC, address DESC;
 
 
 
+#4 З таблиці фільмів виведіть назву фільму і ціну прокату таких
+# фільмів, ціна прокату яких більша ніж 3 долари.
+
+SELECT title, rental_rate
+FROM film
+WHERE 
+	rental_rate >= 3;
+
+
+
+#5  З таблиці фільмів виведіть інформацію про фільми з рейтингом 
+# “G”, “PG”, “R”. Колонки які потрібно вивести: назва, опис
+# і рейтинг.
+
+SELECT title, description, rating
+FROM film
+WHERE rating in ("G", "PG", "R");
+
+
+

@@ -49,3 +49,22 @@ WHERE rating in ("G", "PG", "R");
 
 
 
+#6 Виведіть всі записи з таблиці film_text в описі яких є
+# слово database.
+
+SELECT * FROM film_text
+WHERE description LIKE "database";
+
+
+
+#7 Виведіть всю інформацію про фільми, в яких тривалість прокату
+# рівна 3, а replacement_cost менша ніж 12 доларів.
+
+SELECT * FROM film
+WHERE
+	rental_duration = 3
+    AND
+    replacement_cost < 12;
+
+
+

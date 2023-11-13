@@ -88,3 +88,34 @@ WHERE length>=60 AND length<=90;
 
 
 
+#10 Виведіть всю інформацію про фільми з тривалістю меншою за
+# 60 хвилин або більшою за 90 хвилин.
+
+SELECT * FROM film
+WHERE length<60 OR length>90;
+
+
+
+#11 Виведіть назви всіх фільмів в яких rental duration рівна 6 або 7,
+# rental rate не менша 4, а також в special features наявні Trailers або Commentaries
+
+SELECT title 
+FROM film
+WHERE
+	(rental_duration = 6 OR rental_duration = 7)
+    AND rental_rate >= 4
+    AND
+    (special_features LIKE '%Trailers%'
+	OR special_features LIKE '%Commentaries%');
+
+
+
+#12 Виведіть всі фільми які або мають рейтинг G і тривалість більшу
+#ніж 60 хвилин, або мають рейтинг R і містять Commentaries в special
+# features    
+
+SELECT * FROM film
+WHERE
+	(rating = "G" AND length > 60)
+    OR
+    (rating = "R" AND special_features LIKE '%Commentaries%');

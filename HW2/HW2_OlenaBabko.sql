@@ -54,3 +54,13 @@ WHERE actor_id in (
     )
 );
 
+#3 join
+SELECT DISTINCT first_name, last_name
+FROM actor AS a
+JOIN film_actor AS fa ON a.actor_id = fa.actor_id
+JOIN film_category AS fc ON fa.film_id = fc.film_id
+JOIN category AS c ON fc.category_id = c.category_id
+WHERE name in ("Music", "Sports")
+
+
+

@@ -82,3 +82,10 @@ WHERE film_id in (
     )
 );
 
+#4 join
+SELECT DISTINCT title FROM film AS f
+JOIN inventory AS i ON f.film_id = i.film_id
+JOIN rental AS r ON i.inventory_id = r.inventory_id
+JOIN staff AS s ON r.staff_id = s.staff_id
+WHERE s.first_name = "Mike" AND s.last_name = "Hillyer";
+

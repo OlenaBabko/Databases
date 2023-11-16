@@ -64,3 +64,21 @@ WHERE name in ("Music", "Sports")
 
 
 
+#4 Вивести всі фільми, видані в прокат менеджером Mike Hillyer. 
+#Для визначення менеджера використати таблицю staff і поле staff_id;
+#для визначення фільму скористатися таблицею inventory
+#(поле inventory_id), і таблиці film (поле film_id).
+
+#4 subquery
+SELECT title FROM film
+WHERE film_id in (
+	SELECT film_id FROM inventory
+    WHERE inventory_id in (
+		SELECT inventory_id FROM rental
+        WHERE staff_id in (
+			SELECT staff_id FROM staff
+			WHERE first_name = "Mike" AND last_name = "Hillyer"
+        )
+    )
+);
+

@@ -107,3 +107,12 @@ WHERE customer_id in (
     )
 );
  
+#5 join
+SELECT DISTINCT first_name, last_name FROM customer AS c
+JOIN rental AS r ON c.customer_id = r.customer_id
+JOIN inventory AS i ON r.inventory_id = i.inventory_id
+JOIN film AS f ON i.film_id = f.film_id
+WHERE title in ("SWEETHEARTS", "SUSPECTS", "TEEN APOLLO", "TIMBERLAND SKY", "TORQUE BOUND");
+
+
+

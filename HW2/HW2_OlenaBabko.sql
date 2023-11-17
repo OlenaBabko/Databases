@@ -89,3 +89,21 @@ JOIN rental AS r ON i.inventory_id = r.inventory_id
 JOIN staff AS s ON r.staff_id = s.staff_id
 WHERE s.first_name = "Mike" AND s.last_name = "Hillyer";
 
+
+
+#5 Вивести користувачів, що брали в оренду фільми SWEETHEARTS
+# SUSPECTS, TEEN APOLLO, TIMBERLAND SKY, TORQUE BOUND
+
+#5 subquery
+SELECT first_name, last_name FROM customer
+WHERE customer_id in (
+	SELECT customer_id FROM rental
+    WHERE inventory_id in (
+		SELECT inventory_id FROM inventory
+        WHERE film_id in (
+			SELECT film_id FROM film
+			WHERE title in ("SWEETHEARTS", "SUSPECTS", "TEEN APOLLO", "TIMBERLAND SKY", "TORQUE BOUND")
+        )
+    )
+);
+ 

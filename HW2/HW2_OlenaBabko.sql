@@ -127,3 +127,12 @@ SELECT
     WHERE l.language_id = f.language_id) AS name
 FROM film AS f;
 
+#6 join
+SELECT
+	f.title,
+    f.length,
+    l.name
+FROM film AS f
+JOIN language AS l ON f.language_id = l.language_id;
+
+

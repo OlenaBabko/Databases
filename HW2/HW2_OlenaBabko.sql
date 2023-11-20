@@ -116,3 +116,14 @@ WHERE title in ("SWEETHEARTS", "SUSPECTS", "TEEN APOLLO", "TIMBERLAND SKY", "TOR
 
 
 
+#6 Вивести назву фільму, тривалість фільму і мову фільму.
+#Фільтр: мова Англійська або італійська. (таблиці film, language).
+
+#6 subquery
+SELECT
+	title,
+    length,
+    (SELECT name FROM language AS l
+    WHERE l.language_id = f.language_id) AS name
+FROM film AS f;
+

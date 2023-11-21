@@ -136,3 +136,14 @@ FROM film AS f
 JOIN language AS l ON f.language_id = l.language_id;
 
 
+#7  Вивести payment_date i amount всіх записів активних клієнтів
+#(поле active таблиці customer).
+
+#7 subquery
+SELECT payment_date, amount
+FROM payment
+WHERE customer_id in (
+	SELECT customer_id FROM customer
+    WHERE active = 1
+);
+

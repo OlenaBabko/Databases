@@ -147,3 +147,10 @@ WHERE customer_id in (
     WHERE active = 1
 );
 
+#7 join
+SELECT payment_date, amount
+FROM payment AS p
+JOIN customer  AS c ON p.customer_id = c.customer_id;
+
+
+

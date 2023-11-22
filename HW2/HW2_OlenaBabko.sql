@@ -154,3 +154,24 @@ JOIN customer  AS c ON p.customer_id = c.customer_id;
 
 
 
+#8  Вивести прізвище та ім’я клієнтів, payment_date i amount 
+# для активних клієнтів (поле active таблиці customer)
+
+#8 subquery
+SELECT
+	(
+    SELECT first_name FROM customer AS c
+    WHERE c.customer_id = p.customer_id
+    ) AS first_name,
+    (
+    SELECT last_name FROM customer AS c
+    WHERE c.customer_id = p.customer_id
+    ) AS last_name,
+	p.payment_date,
+	p.amount
+FROM payment AS p
+WHERE customer_id in (
+	SELECT customer_id FROM customer
+    WHERE active = 1
+);
+

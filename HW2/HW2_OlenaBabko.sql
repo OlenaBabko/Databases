@@ -186,3 +186,24 @@ JOIN customer  AS c ON p.customer_id = c.customer_id;
 
 
 
+#9 Вивести прізвище та ім'я користувачів (customer), які здійснювали
+# оплату в розмірі більшому, ніж 10 доларів (таблиця payment, 
+# поле amount), також вивести amount, дату оплати. Відсортувати 
+# за датою оплати.
+
+#9 subquery
+SELECT
+	(
+    SELECT first_name FROM customer AS c
+    WHERE c.customer_id = p.customer_id
+    ) AS first_name,
+    (
+    SELECT last_name FROM customer AS c
+    WHERE c.customer_id = p.customer_id
+    ) AS last_name,
+	p.payment_date,
+	p.amount
+FROM payment AS p
+WHERE p.amount >= 10
+ORDER BY p.payment_date;
+

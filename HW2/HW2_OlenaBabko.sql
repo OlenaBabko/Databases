@@ -207,3 +207,16 @@ FROM payment AS p
 WHERE p.amount >= 10
 ORDER BY p.payment_date;
 
+#9 join
+SELECT
+	c.first_name,
+    c.last_name,
+    p.payment_date,
+    p.amount
+FROM payment AS p
+JOIN customer AS c ON p.customer_id = c.customer_id
+WHERE p.amount >=10
+ORDER BY payment_date;
+
+
+

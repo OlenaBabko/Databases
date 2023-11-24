@@ -220,3 +220,15 @@ ORDER BY payment_date;
 
 
 
+#10 Вивести прізвище та ім’я, а також дату останнього оновлення
+# запису (поле last_update) для людей наявних в таблицях actor, 
+# customer. Також в результуючому запиті передбачити можливість 
+# розрізняти акторів і користувачів.
+
+#10 union
+SELECT first_name, last_name, last_update, "actor" AS catergory FROM actor
+UNION
+SELECT first_name, last_name, last_update, "customer" AS catergory FROM customer;
+
+
+

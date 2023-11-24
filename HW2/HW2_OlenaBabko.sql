@@ -232,3 +232,11 @@ SELECT first_name, last_name, last_update, "customer" AS catergory FROM customer
 
 
 
+#11 Вивести всі унікальні прізвища таблиць actor, customer, staff
+
+#11 union
+SELECT first_name, last_name, last_update, "actor" AS catergory FROM actor
+UNION
+SELECT first_name, last_name, last_update, "customer" AS catergory FROM customer
+UNION
+SELECT NULL AS email, first_name, last_name, "staff" AS catergory FROM staff;

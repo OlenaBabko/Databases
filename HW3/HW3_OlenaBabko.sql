@@ -9,3 +9,12 @@ WHERE customer_id in (
     WHERE return_date is null
 );
 
+#1 join
+SELECT DISTINCT first_name, last_name
+FROM customer c
+JOIN rental AS r
+	ON r.customer_id = c.customer_id
+    WHERE return_date is null;
+
+
+

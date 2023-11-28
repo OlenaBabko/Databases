@@ -18,3 +18,16 @@ JOIN rental AS r
 
 
 
+#2. Виведіть список всіх людей наявних в базі даних (таблиці actor, customer,
+#staff). Для виконання використайте оператор union. Вивести потрібно
+#конкатенацію полів прізвище та ім’я.
+
+#2 union, concat
+SELECT CONCAT(first_name, ' ', last_name) AS names FROM actor
+UNION
+SELECT CONCAT(first_name, ' ', last_name) AS names FROM customer
+UNION
+SELECT CONCAT(first_name, ' ', last_name) AS names FROM staff;
+
+
+

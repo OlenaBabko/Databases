@@ -31,3 +31,14 @@ SELECT CONCAT(first_name, ' ', last_name) AS names FROM staff;
 
 
 
+#3. Виведіть кількість міст для кожної країни.
+SELECT
+	c.country AS country,
+    COUNT(city_id) AS cities_in_this_country
+FROM country AS c
+JOIN city
+	ON city.country_id = c.country_id
+GROUP BY c.country_id;
+
+
+

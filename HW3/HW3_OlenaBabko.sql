@@ -42,3 +42,14 @@ GROUP BY c.country_id;
 
 
 
+#4. Виведіть кількість фільмів знятих в кожній категорії.
+SELECT
+	c.name AS category,
+    COUNT(film_id) AS films_in_category
+FROM category AS c
+JOIN film_category AS fc
+	ON c.category_id = fc.category_id
+GROUP BY fc.category_id;
+
+
+

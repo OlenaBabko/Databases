@@ -77,3 +77,14 @@ GROUP BY c.category_id;
 
 
 
+#7. Виведіть district та кількість адрес для кожного district, за умови, що district
+#починається на “Central”.
+SELECT
+	district,
+    COUNT(address_id) AS address_amount
+FROM address
+WHERE district LIKE "Central%"
+GROUP BY district;
+
+
+

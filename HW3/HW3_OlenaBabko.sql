@@ -64,3 +64,16 @@ GROUP BY f.film_id;
 
 
 
+#6. Виведіть кількість акторів що знімалися в кожній категорії фільмів.
+SELECT
+	c.name AS category_name,
+    COUNT(actor_id) AS actors_in_category
+FROM category AS c
+JOIN film_category AS fc
+	ON c.category_id = fc.category_id
+JOIN film_actor AS fa
+	ON fc.film_id = fa.film_id
+GROUP BY c.category_id;
+
+
+

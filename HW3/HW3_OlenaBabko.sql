@@ -88,3 +88,21 @@ GROUP BY district;
 
 
 
+#8. За допомогою одного запиту вивести кількість фільмів в базі даних,
+#мінімальну, середню та максимальну вартість здачі в прокат (rental_rate),
+#середню replacement_cost, мінімальну, середню та максимальну тривалість
+#фільмів.
+
+SELECT
+	COUNT(film_id) AS amount_of_films,
+    MIN(rental_rate) AS min_rental_rate,
+    MAX(rental_rate) AS max_rental_rate,
+    AVG(rental_rate) AS average_rental_rate,
+    AVG(replacement_cost) AS average_replacement_cost,
+    MIN(length) AS min_length,
+    MAX(length) AS max_length,
+    AVG(length) AS average_length
+FROM film;
+
+
+

@@ -106,3 +106,13 @@ FROM film;
 
 
 
+#9. Виведіть кількість активних та неактивних клієнтів.(формат: active, кількість
+#клієнтів).
+SELECT
+	active,
+	COUNT(customer_id) as amount_of_customers
+FROM customer
+GROUP BY active;
+ 
+
+

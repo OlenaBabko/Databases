@@ -116,3 +116,15 @@ GROUP BY active;
  
 
 
+#10.Виведіть ім’я та прізвище клієнта, дату його першого та останнього платежу
+#та загальну кількість грошей які він заплатив. (таблиці payment, customer)
+
+SELECT DISTINCT
+	CONCAT(c.first_name, ' ', c.last_name) as client,
+	MIN(p.payment_date) AS first_payment_date,
+    MAX(p.payment_date) AS last_payment_date,
+	SUM(p.amount) AS total_payment
+FROM customer AS c
+JOIN payment AS p
+	ON c.customer_id = p.customer_id
+GROUP BY c.customer_id;

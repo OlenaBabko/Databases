@@ -29,3 +29,28 @@ SELECT title FROM film_cte;
 
 
 
+# 2 Вивести користувачів, що брали в оренду фільми SWEETHEARTS
+# SUSPECTS, TEEN APOLLO, TIMBERLAND SKY, TORQUE BOUND.
+# (за допомогою cte = common table expression)
+
+WITH film_cte AS (
+	SELECT film_id
+    FROM film
+    WHERE title in ("SWEETHEARTS", "SUSPECTS", "TEEN APOLLO", "TIMBERLAND SKY", "TORQUE BOUND")
+),
+	inventory_cte AS (
+    SELECT inventory_id
+    FROM inventory
+    WHERE film_id IN (SELECT film_id FROM film_cte)
+),
+	customer_cte AS (
+	SELECT customer_id
+    FROM rental
+    WHERE inventory_id IN (SELECT inventory_id FROM inventory_cte)
+)
+SELECT first_name, last_name FROM customer
+WHERE customer_id IN (SELECT customer_id FROM customer_cte);
+
+
+
+

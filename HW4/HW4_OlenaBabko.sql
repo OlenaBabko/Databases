@@ -54,3 +54,27 @@ WHERE customer_id IN (SELECT customer_id FROM customer_cte);
 
 
 
+# 3 Вивести список фільмів, неповернених в прокат, replacement_cost
+# яких більший 10 доларів.
+WITH rental_cte AS (
+	SELECT inventory_id
+    FROM rental
+    WHERE return_date IS NULL
+),
+	inventory_cte AS (
+	SELECT film_id
+    FROM inventory
+    WHERE inventory_id IN (SELECT inventory_id FROM rental_cte)
+),
+	film_cte AS (
+	SELECT title
+    FROM film
+    WHERE film_id IN (SELECT film_id FROM inventory_cte)
+    AND replacement_cost > 10
+)
+SELECT title FROM film_cte;
+
+
+
+
+

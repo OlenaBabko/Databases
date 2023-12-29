@@ -100,3 +100,12 @@ JOIN film AS f ON f.film_id = i.film_id;
 
 
 
+# 5  Виведіть кількість rental, які були повернуті і кількість тих,
+# які не були повернуті в прокат
+SELECT
+	COUNT(CASE WHEN return_date IS NOT NULL THEN 1 END) AS "returned",
+	COUNT(CASE WHEN return_date IS NULL THEN 1 END) AS "not returned"
+FROM rental;
+
+
+

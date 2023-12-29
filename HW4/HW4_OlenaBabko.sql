@@ -78,3 +78,25 @@ SELECT title FROM film_cte;
 
 
 
+# 4 Виведіть назву фільму та загальну кількість грошей отриманих від 	
+# здачі цього фільму в прокат (таблиці payment, rental, inventory, film)
+
+-- title, film_id FROM film - 
+-- film_id, inventory_id FROM inventory -
+-- inventory_id, rental_id FROM rental -
+-- amount, rental_id FROM payment
+
+WITH payment_cte AS (
+	SELECT rental_id, SUM(amount) AS total_rental_amount
+    FROM payment
+    GROUP BY rental_id
+    ORDER BY total_rental_amount DESC
+)
+SELECT f.title, cte.total_rental_amount FROM payment_cte AS cte
+JOIN rental AS r ON r.rental_id = cte.rental_id
+JOIN inventory AS i ON i.inventory_id = r.inventory_id
+JOIN film AS f ON f.film_id = i.film_id;
+
+
+
+

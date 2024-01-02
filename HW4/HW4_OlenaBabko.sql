@@ -109,3 +109,35 @@ FROM rental;
 
 
 
+
+# 6 Напишіть запит, що повертає поля “customer”, “total_amount”. За основу
+# взяти таблицю sakila.payment. Total_amount - це сума грошей, які заплатив
+# кожен користувач за фільми, що брав у прокат. Результат має відображати
+# лише тих користувачів, що заплатили більше ніж 190 доларів. Customer - це
+# конкатенація першої літери імені та прізвища користувача. Наприклад Alan
+# Lipton має бути представлений як A. Lipton.
+
+-- customer whos -- total_amount >190
+-- customer = CONCAT(A. Lipton)
+-- total_amount = SUM(amount) AS total_amount FROM payment WHERE total_amount > 190
+-- first_name, last_name, customer_id FROM customer
+-- customer_id, total_amount FROM payment
+
+WITH payment_cte AS (
+	SELECT customer_id, SUM(amount) AS total_amount
+    FROM payment
+	GROUP BY customer_id
+),
+	customer_cte AS (
+	SELECT customer_id, CONCAT(SUBSTRING(first_name, 1, 1), '. ', last_name) AS customer 
+    FROM customer
+    WHERE customer_id IN (SELECT customer_id FROM payment_cte)
+)
+SELECT ccte.customer, pcte.total_amount FROM customer_cte AS ccte
+JOIN payment_cte AS pcte ON ccte.customer_id = pcte.customer_id
+WHERE pcte.total_amount > 190;
+
+
+
+
+

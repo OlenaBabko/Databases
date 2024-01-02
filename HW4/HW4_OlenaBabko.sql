@@ -141,3 +141,33 @@ WHERE pcte.total_amount > 190;
 
 
 
+# 7 Виведіть інформацію про фільми, тривалість яких найменша (в даному
+# випадку потрібно використати підзапит з агрегаційною функцією). Вивести
+# потрібно назву фільму, категорію до якої він відноситься, прізвища та імена
+# акторів які знімалися в фільмі.
+
+-- title, film_id, length FROM film
+-- film_id, category_id FROM film_category
+-- category_id, name FROM category
+-- film_id, actor_id FROM film_actor
+-- actor_id, actor CONCAT() FROM actor
+
+WITH actor_cte AS (
+	SELECT actor_id, CONCAT(first_name, ' ', last_name) AS actor
+    FROM actor
+)
+SELECT f.title, c.name AS category, acte.actor FROM film f
+JOIN film_category AS fc
+	ON fc.film_id = f.film_id
+JOIN category AS c
+	ON c.category_id = fc.category_id
+JOIN film_actor AS fa
+	ON fa.film_id = f.film_id
+JOIN actor_cte AS acte
+	ON acte.actor_id = fa.actor_id
+WHERE f.length = (SELECT MIN(length) FROM film);
+
+
+
+
+

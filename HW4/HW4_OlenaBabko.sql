@@ -171,3 +171,28 @@ WHERE f.length = (SELECT MIN(length) FROM film);
 
 
 
+# 8 Категоризуйте фільми за ознакою rental_rate наступним чином: якщо
+# rental_rate нижчий за 2 - це фільм категорії low_rental_rate, якщо rental_rate
+# від 2 до 4 - це фільм категорії medium_rental_rate, якщо rental_rate більший
+# за 4 - це фільм категорії high_rental_rate. Відобразіть кількість фільмів що
+# належать до кожної з категорій.
+
+-- WHEN rental_rate <2 THEN "low_rental_rate"
+-- WHEN rental_rate >=2 AND rental_rate <4 THEN "medium_rental_rate"
+-- WHEN rental_rate >=4 THEN "high_rental_rate"
+
+WITH film_cte as (
+	SELECT 
+		film_id,
+		CASE
+			WHEN rental_rate <2 THEN "low_rental_rate"
+            WHEN rental_rate >=2 AND rental_rate <4 THEN "medium_rental_rate"
+            WHEN rental_rate >=4 THEN "high_rental_rate"
+		END AS rental_rate
+	FROM film
+)
+SELECT rental_rate, COUNT(*) AS films_with_rate
+FROM film_cte
+GROUP BY rental_rate;
+
+

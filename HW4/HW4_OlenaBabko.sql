@@ -196,3 +196,9 @@ FROM film_cte
 GROUP BY rental_rate;
 
 
+## 8
+SELECT
+	COUNT(CASE WHEN rental_rate <2 THEN 1 END) AS low_rental_rate,
+    COUNT(CASE WHEN rental_rate >=2 AND rental_rate <4 THEN 1 END) AS medium_rental_rate,
+    COUNT(CASE WHEN rental_rate >=4 THEN 1 END) AS high_rental_rate
+FROM film;

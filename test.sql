@@ -11,3 +11,11 @@ FROM items
 WHERE item_name IN('Phone', 'Headphones', 'Mouse', 'Laptop');
 
 
+#2 З огляду на схему, наведену на початку тесту, напишіть запит, 
+# що поверне інформацію про товари (items) з ціною від 100 до 1000 доларів.
+SELECT item_id, item_name, item_price
+FROM items
+WHERE item_price >=100 AND item_price <1000
+ORDER BY item_price ASC;
+
+

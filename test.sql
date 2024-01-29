@@ -30,3 +30,13 @@ GROUP BY o.customer_id
 ORDER BY order_id ASC;
 
 
+#4 З огляду на схему, наведену на початку тесту, напишіть запит, 
+# що повертає інформацію про товар (item) з найвищою ціною.
+SELECT item_id, item_name, item_price AS max_price
+FROM items
+WHERE item_price = (
+	SELECT MAX(item_price)
+    FROM items
+    );
+
+

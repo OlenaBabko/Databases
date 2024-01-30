@@ -40,3 +40,10 @@ WHERE item_price = (
     );
 
 
+#5 В базі даних були знайдені дублікати телефонних номерів в таблиці customers 
+# (наприклад, кілька клієнтів вказували один і той же номер для зв'язку). 
+# Яким чином ви перевірите наявність дублікатів? 
+SELECT customer_id, customer_phone, COUNT(customer_phone) AS num_of_duplicates
+FROM customers
+GROUP BY customer_phone, customer_id
+HAVING COUNT(customer_phone) >1;
